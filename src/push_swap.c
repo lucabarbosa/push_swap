@@ -6,7 +6,7 @@
 /*   By: lbento <lbento@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 21:26:37 by lbento            #+#    #+#             */
-/*   Updated: 2025/10/08 12:19:33 by lbento           ###   ########.fr       */
+/*   Updated: 2025/10/08 12:26:14 by lbento           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	main(int argc, char **argv)
 		stack_a = creation_list(argc, argv);
 		stack_b = NULL;
 		check_arguments(&stack_a);
+		algorithm_sort(stack_a, stack_b);
 		free_and_exit(stack_a, stack_b, 0);
 	}
 	return (0);
