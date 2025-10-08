@@ -6,7 +6,7 @@
 /*   By: lbento <lbento@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 22:02:31 by lbento            #+#    #+#             */
-/*   Updated: 2025/10/06 00:32:06 by lbento           ###   ########.fr       */
+/*   Updated: 2025/10/08 00:06:31 by lbento           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,8 @@ typedef struct s_list
 	
 }	t_list;
 
+int	is_sorted(t_list *stack_a);
+void check_arguments(t_list **stack_a);
+void	free_and_exit(t_list *stack_a, t_list *stack_b, int exit_num);
 
 #endif
