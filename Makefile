@@ -13,7 +13,7 @@ $(NAME):	$(OBJ)
 			$(CC) $(CFLAGS) -o $@ $^ ./libft/libft.a
 
 $(LIBFT):		
-			@make -s -C libft
+			@make bonus -s -C libft
 			@echo "Libft compiled!"
 
 obj:
