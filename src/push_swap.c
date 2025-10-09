@@ -6,7 +6,7 @@
 /*   By: lbento <lbento@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 21:26:37 by lbento            #+#    #+#             */
-/*   Updated: 2025/10/08 20:52:48 by lbento           ###   ########.fr       */
+/*   Updated: 2025/10/08 22:27:02 by lbento           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,11 @@ void	free_and_exit(t_list *stack_a, t_list *stack_b, int exit_num)
 		stack_b = stack_b->next;
 		free(temp);
 	}
-	if (exit_num == 1)
+	if (exit_num)
+	{
+		ft_putendl_fd("Error\n", 2);
 		exit(1);
+	}
 	else
 		exit(0);
 }
