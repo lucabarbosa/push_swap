@@ -5,7 +5,8 @@ LIBFT		=	libft/libft.a
 INC			=	-I ./src -I ./libft
 OBJ			=	$(patsubst src/%.c, obj/%.o, $(SRC))
 SRC			=	src/push_swap.c \
-				src/
+					src/push_swap_utils.c \
+					src/algorithm.c
 
 all:		$(LIBFT) obj $(NAME)
 
@@ -13,7 +14,7 @@ $(NAME):	$(OBJ)
 			$(CC) $(CFLAGS) -o $@ $^ ./libft/libft.a
 
 $(LIBFT):		
-			@make bonus -s -C libft
+			@make -s -C libft
 			@echo "Libft compiled!"
 
 obj:

@@ -6,30 +6,30 @@
 /*   By: lbento <lbento@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 14:53:19 by lbento            #+#    #+#             */
-/*   Updated: 2025/10/08 21:38:09 by lbento           ###   ########.fr       */
+/*   Updated: 2025/10/09 19:22:14 by lbento           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap_a(t_list **stack_a, int put_text);
-void	swap_b(t_list **stack_b, int put_text);
-void	push_a(t_list **stack_a, t_list **stack_b);
-void	push_b(t_list **stack_a, t_list **stack_b);
-void	swap_a_and_b(t_list **stack_a, t_list **stack_b);
+void	swap_a(t_stack **stack_a, int put_text);
+void	swap_b(t_stack **stack_b, int put_text);
+void	push_a(t_stack **stack_a, t_stack **stack_b);
+void	push_b(t_stack **stack_a, t_stack **stack_b);
+void	swap_a_and_b(t_stack **stack_a, t_stack **stack_b);
 
-void	swap_a_and_b(t_list **stack_a, t_list **stack_b)
+void	swap_a_and_b(t_stack **stack_a, t_stack **stack_b)
 {
 	swap_a(stack_a, 0);
 	swap_b(stack_b, 0);
 	write(1, "ss\n", 3);
 }
 
-void	swap_a(t_list **stack_a, int put_text)
+void	swap_a(t_stack **stack_a, int put_text)
 {
-	t_list	*first;
-	t_list	*second;
-	t_list	*third;
+	t_stack	*first;
+	t_stack	*second;
+	t_stack	*third;
 
 	if (!stack_a || !(*stack_a) || !(*stack_a)->next)
 		return ;
@@ -47,11 +47,11 @@ void	swap_a(t_list **stack_a, int put_text)
 		write(1, "sa\n", 3);
 }
 
-void	swap_b(t_list **stack_b, int put_text)
+void	swap_b(t_stack **stack_b, int put_text)
 {
-	t_list	*first;
-	t_list	*second;
-	t_list	*third;
+	t_stack	*first;
+	t_stack	*second;
+	t_stack	*third;
 
 	if (!stack_b || !(*stack_b) || !(*stack_b)->next)
 		return ;
@@ -69,11 +69,11 @@ void	swap_b(t_list **stack_b, int put_text)
 		write(1, "sb\n", 3);
 }
 
-void	push_a(t_list **stack_a, t_list **stack_b)
+void	push_a(t_stack **stack_a, t_stack **stack_b)
 {
-	t_list	*old_first_a;
-	t_list	*first_b;
-	t_list	*second_b;
+	t_stack	*old_first_a;
+	t_stack	*first_b;
+	t_stack	*second_b;
 
 	if (!stack_b || !(*stack_b))
 		return ;
@@ -89,11 +89,11 @@ void	push_a(t_list **stack_a, t_list **stack_b)
 	write(1, "pa\n", 3);
 }
 
-void	push_b(t_list **stack_a, t_list **stack_b)
+void	push_b(t_stack **stack_a, t_stack **stack_b)
 {
-	t_list	*old_first_b;
-	t_list	*first_a;
-	t_list	*second_a;
+	t_stack	*old_first_b;
+	t_stack	*first_a;
+	t_stack	*second_a;
 
 	if (!stack_a || !(*stack_a))
 		return ;

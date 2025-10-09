@@ -6,19 +6,49 @@
 /*   By: lbento <lbento@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 11:58:53 by lbento            #+#    #+#             */
-/*   Updated: 2025/10/08 21:38:40 by lbento           ###   ########.fr       */
+/*   Updated: 2025/10/09 19:53:36 by lbento           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		is_sorted(t_list *stack_a);
-void	check_arguments(t_list **stack_a);
+int		list_size(t_stack *stack);
+t_stack	*list_last(t_stack *stack);
+int		is_sorted(t_stack *stack_a);
+void	check_arguments(t_stack **stack_a);
 
-void	check_arguments(t_list **stack_a)
+int	list_size(t_stack *stack)
 {
-	t_list	*temp;
-	t_list	*next_node;
+	int		i;
+	t_stack	*current;
+
+	i = 0;
+	current = stack;
+	while (current)
+	{
+		i++;
+		current = current->next;
+	}
+	return (i);
+}
+
+t_stack	*list_last(t_stack *stack)
+{
+	while (stack != NULL)
+	{
+		if (stack->next == NULL)
+		{
+			return (stack);
+		}
+		stack = stack->next;
+	}
+	return (NULL);
+}
+
+void	check_arguments(t_stack **stack_a)
+{
+	t_stack	*temp;
+	t_stack	*next_node;
 
 	temp = *stack_a;
 	while (temp)
@@ -27,19 +57,18 @@ void	check_arguments(t_list **stack_a)
 		while (next_node)
 		{
 			if (temp->number == next_node->number)
-				free_and_exit(stack_a, NULL, 1);
+				free_and_exit(*stack_a, NULL, 1);
 			next_node = next_node->next;
 		}
 		temp = temp->next;
 	}
-	if (is_sorted(&stack_a) == 1)
-		free_and_exit(stack_a, NULL, 0);
+	if (is_sorted(*stack_a) == 1)
+		free_and_exit(*stack_a, NULL, 0);
 }
 
-int	is_sorted(t_list *stack_a)
+int	is_sorted(t_stack *stack_a)
 {
 	int		temp;
-	t_list	*checked;
 
 	while (stack_a && stack_a->next)
 	{
