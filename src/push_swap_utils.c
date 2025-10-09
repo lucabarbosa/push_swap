@@ -6,19 +6,19 @@
 /*   By: lbento <lbento@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 11:58:53 by lbento            #+#    #+#             */
-/*   Updated: 2025/10/08 00:17:12 by lbento           ###   ########.fr       */
+/*   Updated: 2025/10/08 21:38:40 by lbento           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	is_sorted(t_list *stack_a);
-void check_arguments(t_list **stack_a);
+int		is_sorted(t_list *stack_a);
+void	check_arguments(t_list **stack_a);
 
-void check_arguments(t_list **stack_a)
+void	check_arguments(t_list **stack_a)
 {
-	t_list *temp;
-	t_list *next_node;
+	t_list	*temp;
+	t_list	*next_node;
 
 	temp = *stack_a;
 	while (temp)
@@ -38,9 +38,9 @@ void check_arguments(t_list **stack_a)
 
 int	is_sorted(t_list *stack_a)
 {
-	int temp;
-	t_list *checked;
-	
+	int		temp;
+	t_list	*checked;
+
 	while (stack_a && stack_a->next)
 	{
 		temp = stack_a->number;
