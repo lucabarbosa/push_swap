@@ -6,13 +6,15 @@
 /*   By: lbento <lbento@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 12:22:50 by lbento            #+#    #+#             */
-/*   Updated: 2025/10/10 04:18:32 by lbento           ###   ########.fr       */
+/*   Updated: 2025/10/10 04:41:08 by lbento           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 void			algorithm_sort(t_stack **stack_a, t_stack **stack_b);
+static void	sort_three(t_stack **stack_a);
+static void sort_small(t_stack **stack_a, t_stack **stack_b, int size);
 void			include_position(t_stack **stack_a, int size);
 
 void	algorithm_sort(t_stack **stack_a, t_stack **stack_b)
@@ -24,6 +26,8 @@ void	algorithm_sort(t_stack **stack_a, t_stack **stack_b)
 		swap_a(stack_a, 1);
 	else if (size == 3)
 		sort_three(stack_a);
+	else if (size == 4 || size == 5)
+		sorte_small(stack_a, stack_b, size);
 	else
 	{
 		include_position(stack_a, size);
@@ -42,11 +46,6 @@ static void	sort_three(t_stack **stack_a)
 	third = (*stack_a)->next->next->number;
 	if (first > second && second < third && first < third)
 		swap_a(stack_a, 1);
-	else if (first > second && second > third)
-	{
-		swap_a(stack_a, 1);
-		reverse_rotate_a(stack_a, 1);
-	}
 	else if (first > second && second < third && first > third)
 		rotate_a(stack_a, 1);
 	else if (first < second && second > third && first < third)
@@ -56,6 +55,19 @@ static void	sort_three(t_stack **stack_a)
 	}
 	else if (first < second && second > third && first > third)
 		reverse_rotate_a(stack_a, 1);
+	else if (first > second && second > third)
+	{
+		swap_a(stack_a, 1);
+		reverse_rotate_a(stack_a, 1);
+	}
+}
+
+static void sort_small(t_stack **stack_a, t_stack **stack_b, int size)
+{
+	if (size == 4)
+	{
+		
+	}
 }
 
 void	include_position(t_stack **stack_a, int size)
