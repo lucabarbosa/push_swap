@@ -6,7 +6,7 @@
 /*   By: lbento <lbento@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 12:22:50 by lbento            #+#    #+#             */
-/*   Updated: 2025/10/09 21:51:53 by lbento           ###   ########.fr       */
+/*   Updated: 2025/10/10 04:18:32 by lbento           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,48 @@
 
 void			algorithm_sort(t_stack **stack_a, t_stack **stack_b);
 void			include_position(t_stack **stack_a, int size);
-void			radix_sort(t_stack **stack_a, t_stack **stack_b, int size);
-static int		get_pixels(int position, int amount_bit_position);
-static int		total_bits(int size);
 
 void	algorithm_sort(t_stack **stack_a, t_stack **stack_b)
 {
 	int		size;
 
 	size = list_size(*stack_a);
-	include_position(stack_a, size);
-	radix_sort(stack_a, stack_b, size);
+	if (size == 2)
+		swap_a(stack_a, 1);
+	else if (size == 3)
+		sort_three(stack_a);
+	else
+	{
+		include_position(stack_a, size);
+		radix_sort(stack_a, stack_b, size);
+	}
+}
+
+static void	sort_three(t_stack **stack_a)
+{
+	int	first;
+	int	second;
+	int	third;
+
+	first = (*stack_a)->number;
+	second = (*stack_a)->next->number;
+	third = (*stack_a)->next->next->number;
+	if (first > second && second < third && first < third)
+		swap_a(stack_a, 1);
+	else if (first > second && second > third)
+	{
+		swap_a(stack_a, 1);
+		reverse_rotate_a(stack_a, 1);
+	}
+	else if (first > second && second < third && first > third)
+		rotate_a(stack_a, 1);
+	else if (first < second && second > third && first < third)
+	{
+		swap_a(stack_a, 1);
+		rotate_a(stack_a, 1);
+	}
+	else if (first < second && second > third && first > third)
+		reverse_rotate_a(stack_a, 1);
 }
 
 void	include_position(t_stack **stack_a, int size)
@@ -53,51 +84,4 @@ void	include_position(t_stack **stack_a, int size)
 			lowest_node->position = i;
 		i++;
 	}
-}
-
-void	radix_sort(t_stack **stack_a, t_stack **stack_b, int size)
-{
-	int	amount_bits;
-	int	current_bit;
-	int	i;
-
-	current_bit = 0;
-	amount_bits = total_bits(size);
-	while (current_bit < amount_bits)
-	{
-		i = 0;
-		while (i < size)
-		{
-			if (get_pixels((*stack_a)->position, current_bit) == 1)
-				push_b(stack_a, stack_b);
-			i++;
-		}
-		while (*stack_b)
-		{
-			push_a(stack_b, stack_b);
-			*stack_b = (*stack_b)->next;
-		}
-		current_bit++;
-	}
-}
-
-static int	total_bits(int size)
-{
-	int	total_bits;
-
-	total_bits = 0;
-	while (size > 0)
-	{
-		size /= 2;
-		total_bits++;
-	}
-	return (total_bits);
-}
-
-static int	get_pixels(int position, int amount_bit_position)
-{
-	if (((position >> amount_bit_position) & 1) == 0)
-		return (0);
-	else
-		return (1);
 }
