@@ -6,7 +6,7 @@
 /*   By: lbento <lbento@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:17:16 by lbento            #+#    #+#             */
-/*   Updated: 2025/10/09 21:32:32 by lbento           ###   ########.fr       */
+/*   Updated: 2025/10/10 17:09:33 by lbento           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,11 @@ void	reverse_rotate_a(t_stack **stack_a, int put_text)
 	old_first_node = *stack_a;
 	old_last_node = list_last(*stack_a);
 	penultimate = old_last_node->previous;
+	*stack_a = old_last_node;
 	penultimate->next = NULL;
-	(*stack_a)->previous = NULL;
-	(*stack_a)->next = old_first_node;
-	old_first_node->previous = *stack_a;
+	old_last_node->previous = NULL;
+	old_last_node->next = old_first_node;
+	old_first_node->previous = old_last_node;
 	if (put_text)
 		write(1, "rra\n", 4);
 }
@@ -84,12 +85,13 @@ void	reverse_rotate_b(t_stack **stack_b, int put_text)
 	old_first_node = *stack_b;
 	old_last_node = list_last(*stack_b);
 	penultimate = old_last_node->previous;
+	*stack_b = old_last_node;
 	penultimate->next = NULL;
-	(*stack_b)->previous = NULL;
-	(*stack_b)->next = old_first_node;
-	old_first_node->previous = *stack_b;
+	old_last_node->previous = NULL;
+	old_last_node->next = old_first_node;
+	old_first_node->previous = old_last_node;
 	if (put_text)
-		write(1, "rra\n", 4);
+		write(1, "rrb\n", 4);
 }
 
 void	rotateab_or_reverseab(t_stack **stack_a, t_stack **stack_b, int each)
