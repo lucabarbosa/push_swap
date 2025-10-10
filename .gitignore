@@ -2,3 +2,4 @@
 .o
 .exe
 .push_notes/
+push_swap_test_linux.sh
