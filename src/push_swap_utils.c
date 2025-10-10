@@ -6,7 +6,7 @@
 /*   By: lbento <lbento@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 11:58:53 by lbento            #+#    #+#             */
-/*   Updated: 2025/10/09 19:53:36 by lbento           ###   ########.fr       */
+/*   Updated: 2025/10/09 21:43:22 by lbento           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int		list_size(t_stack *stack);
 t_stack	*list_last(t_stack *stack);
+void	listadd_front(t_stack **stack, t_stack *new);
 int		is_sorted(t_stack *stack_a);
 void	check_arguments(t_stack **stack_a);
 
@@ -43,6 +44,12 @@ t_stack	*list_last(t_stack *stack)
 		stack = stack->next;
 	}
 	return (NULL);
+}
+
+void	listadd_front(t_stack **stack, t_stack *new)
+{
+new->next = *stack;
+*stack = new;
 }
 
 void	check_arguments(t_stack **stack_a)

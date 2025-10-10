@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_p_functions.c                                    :+:      :+:    :+:   */
+/*   p_s_functions.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbento <lbento@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 14:53:19 by lbento            #+#    #+#             */
-/*   Updated: 2025/10/09 19:22:14 by lbento           ###   ########.fr       */
+/*   Updated: 2025/10/09 21:42:20 by lbento           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	push_a(t_stack **stack_a, t_stack **stack_b)
 	if (second_b != NULL)
 		second_b->previous = NULL;
 	old_first_a = *stack_a;
-	ft_lstadd_front(stack_a, first_b);
+	listadd_front(stack_a, first_b);
 	if (old_first_a != NULL)
 		old_first_a->previous = first_b;
 	write(1, "pa\n", 3);
@@ -103,7 +103,7 @@ void	push_b(t_stack **stack_a, t_stack **stack_b)
 	if (second_a != NULL)
 		second_a->previous = NULL;
 	old_first_b = *stack_b;
-	ft_lstadd_front(stack_b, first_a);
+	listadd_front(stack_b, first_a);
 	if (old_first_b != NULL)
 		old_first_b->previous = first_a;
 	write(1, "pb\n", 3);

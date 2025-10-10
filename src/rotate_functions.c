@@ -6,11 +6,17 @@
 /*   By: lbento <lbento@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:17:16 by lbento            #+#    #+#             */
-/*   Updated: 2025/10/09 19:43:01 by lbento           ###   ########.fr       */
+/*   Updated: 2025/10/09 21:32:32 by lbento           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	rotate_a(t_stack **stack_a, int put_text);
+void	rotate_b(t_stack **stack_b, int put_text);
+void	reverse_rotate_a(t_stack **stack_a, int put_text);
+void	reverse_rotate_b(t_stack **stack_b, int put_text);
+void	rotateab_or_reverseab(t_stack **stack_a, t_stack **stack_b, int each);
 
 void	rotate_a(t_stack **stack_a, int put_text)
 {
