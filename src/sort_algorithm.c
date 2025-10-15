@@ -6,7 +6,7 @@
 /*   By: lbento <lbento@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 22:40:57 by lbento            #+#    #+#             */
-/*   Updated: 2025/10/14 23:39:34 by lbento           ###   ########.fr       */
+/*   Updated: 2025/10/15 00:58:36 by lbento           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ void	sort_100(t_stack **stack_a, t_stack **stack_b)
 	{
 		if (i >= 1 && (*stack_a)->position < i)
 		{
-			push_b(stack_a, stack_b);
+			push_b(stack_a, stack_b, 1);
 			rotate_b(stack_b, 1);
 			i++;
 		}
 		else if ((*stack_a)->position < i + chunk_size)
 		{
-			push_b(stack_a, stack_b);
+			push_b(stack_a, stack_b, 1);
 			i++;
 		}
 		else if ((*stack_a)->position >= i + chunk_size)
@@ -55,13 +55,13 @@ void	sort_500(t_stack **stack_a, t_stack **stack_b)
 	{
 		if (i >= 1 && (*stack_a)->position < i)
 		{
-			push_b(stack_a, stack_b);
+			push_b(stack_a, stack_b, 1);
 			rotate_b(stack_b, 1);
 			i++;
 		}
 		else if ((*stack_a)->position < i + chunk_size)
 		{
-			push_b(stack_a, stack_b);
+			push_b(stack_a, stack_b, 1);
 			i++;
 		}
 		else if ((*stack_a)->position >= i + chunk_size)
@@ -91,7 +91,7 @@ static void	push_back_sorted(t_stack **stack_a, t_stack **stack_b)
 			while ((*stack_b)->position != max_pos)
 				reverse_rotate_b(stack_b, 1);
 		}
-		push_a(stack_a, stack_b);
+		push_a(stack_a, stack_b, 1);
 	}
 }
 

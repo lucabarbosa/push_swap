@@ -6,7 +6,7 @@
 /*   By: lbento <lbento@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 14:53:19 by lbento            #+#    #+#             */
-/*   Updated: 2025/10/09 21:42:20 by lbento           ###   ########.fr       */
+/*   Updated: 2025/10/15 00:57:16 by lbento           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	swap_a(t_stack **stack_a, int put_text);
 void	swap_b(t_stack **stack_b, int put_text);
-void	push_a(t_stack **stack_a, t_stack **stack_b);
-void	push_b(t_stack **stack_a, t_stack **stack_b);
+void	push_a(t_stack **stack_a, t_stack **stack_b, int put_text);
+void	push_b(t_stack **stack_a, t_stack **stack_b, int put_text);
 void	swap_a_and_b(t_stack **stack_a, t_stack **stack_b);
 
 void	swap_a_and_b(t_stack **stack_a, t_stack **stack_b)
@@ -69,7 +69,7 @@ void	swap_b(t_stack **stack_b, int put_text)
 		write(1, "sb\n", 3);
 }
 
-void	push_a(t_stack **stack_a, t_stack **stack_b)
+void	push_a(t_stack **stack_a, t_stack **stack_b, int put_text)
 {
 	t_stack	*old_first_a;
 	t_stack	*first_b;
@@ -86,10 +86,11 @@ void	push_a(t_stack **stack_a, t_stack **stack_b)
 	listadd_front(stack_a, first_b);
 	if (old_first_a != NULL)
 		old_first_a->previous = first_b;
-	write(1, "pa\n", 3);
+	if (put_text)
+		write(1, "pa\n", 3);
 }
 
-void	push_b(t_stack **stack_a, t_stack **stack_b)
+void	push_b(t_stack **stack_a, t_stack **stack_b, int put_text)
 {
 	t_stack	*old_first_b;
 	t_stack	*first_a;
@@ -106,5 +107,6 @@ void	push_b(t_stack **stack_a, t_stack **stack_b)
 	listadd_front(stack_b, first_a);
 	if (old_first_b != NULL)
 		old_first_b->previous = first_a;
-	write(1, "pb\n", 3);
+	if (put_text)
+		write(1, "pb\n", 3);
 }
