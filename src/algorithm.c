@@ -6,7 +6,7 @@
 /*   By: lbento <lbento@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 12:22:50 by lbento            #+#    #+#             */
-/*   Updated: 2025/10/14 18:24:19 by lbento           ###   ########.fr       */
+/*   Updated: 2025/10/14 22:44:40 by lbento           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ void	algorithm_sort(t_stack **stack_a, t_stack **stack_b)
 		sort_three(stack_a);
 	else if (size == 4 || size == 5)
 		sort_small(stack_a, stack_b, size);
+	else if (size <= 100)
+		sort_100(stack_a, stack_b);
 	else
-		chunk_sort(stack_a, stack_b, size);
+		sort_500(stack_a, stack_b);
 }
 
 void	include_position(t_stack **stack_a, int size)

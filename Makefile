@@ -7,10 +7,9 @@ OBJ			=	$(patsubst src/%.c, obj/%.o, $(SRC))
 SRC			=	src/push_swap.c \
 					src/push_swap_utils.c \
 					src/algorithm.c \
-					src/chunk_sort.c \
 					src/p_s_functions.c \
 					src/rotate_functions.c \
-					src/radix_sort.c
+					src/sort_max.c
 
 all:		$(LIBFT) obj $(NAME)
 
