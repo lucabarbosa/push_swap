@@ -6,7 +6,7 @@
 /*   By: lbento <lbento@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 23:28:33 by lbento            #+#    #+#             */
-/*   Updated: 2025/10/15 01:20:50 by lbento           ###   ########.fr       */
+/*   Updated: 2025/10/15 13:39:18 by lbento           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	check_bonus_arguments(t_stack **stack_a);
 void	read_execute(t_stack **stack_a, t_stack **stack_b);
-void	execute_operation(t_stack **stack_a, t_stack **stack_b, char *line);
+int	execute_operation(t_stack **stack_a, t_stack **stack_b, char *line);
 static void	silent_ss(t_stack **stack_a, t_stack **stack_b);
 static void silent_rr_rrr(t_stack **stack_a, t_stack **stack_b, int each);
 
@@ -45,26 +45,30 @@ void	check_bonus_arguments(t_stack **stack_a)
 void	read_execute(t_stack **stack_a, t_stack **stack_b)
 {
 	char	*line;
+	int	result;
 
 	line = get_next_line(0);
 	while (line != NULL)
 	{
-		execute_operation(stack_a, stack_b, line);
-		if (!line)
+		result = execute_operation(stack_a, stack_b, line);
+		if (result)
+		{
+			free(line);
 			free_and_exit(*stack_a, *stack_b, 1);
+		}
 		free(line);
 		line = get_next_line(0);
 	}
 }
 
-void	execute_operation(t_stack **stack_a, t_stack **stack_b, char *line)
+int	execute_operation(t_stack **stack_a, t_stack **stack_b, char *line)
 {
 	if (ft_strncmp(line, "sa", 2) == 0)
-		swap_a(stack_a, 0);
+		return (swap_a(stack_a, 0), 0);
 	else if (ft_strncmp(line, "sb", 2) == 0)
-		swap_b(stack_b, 0);
+		return (swap_b(stack_b, 0), 0);
 	else if (ft_strncmp(line, "ss", 2) == 0)
-		silent_ss(stack_a, stack_b);
+		return (silent_ss(stack_a, stack_b), 0);
 	else if (ft_strncmp(line, "pa", 2) == 0)
 		push_a(stack_a, stack_b, 0);
 	else if (ft_strncmp(line, "pb", 2) == 0)
@@ -82,7 +86,7 @@ void	execute_operation(t_stack **stack_a, t_stack **stack_b, char *line)
 	else if (ft_strncmp(line, "rrr", 3) == 0)
 		silent_rr_rrr(stack_a, stack_b, 2);
 	else
-		free(line);
+		return (1);
 }
 
 static void	silent_ss(t_stack **stack_a, t_stack **stack_b)
