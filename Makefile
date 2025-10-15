@@ -46,12 +46,14 @@ obj/%.o:	src_bonus/%.c
 
 clean:
 			@make -s $@ -C libft
-			@rm -rf $(OBJ) $(BONUS_OBJ) obj obj_bonus
+			@rm -rf $(OBJ) $(BONUS_OBJ) $(LIBFT) obj obj_bonus
 			@echo "\033[1;30m🗑️  Objects deleted."
 
-fclean:		clean
+fclean:
 			@make -s $@ -C libft
-			@rm -rf $(NAME) $(BONUS)
+
+			
+			@rm -rf $(NAME) $(BONUS) $(OBJ) $(BONUS_OBJ) $(LIBFT) obj obj_bonus
 			@echo "\033[1;30m🗑️  push_swap and checker deleted."
 
 re:			fclean all
