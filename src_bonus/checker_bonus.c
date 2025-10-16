@@ -6,7 +6,7 @@
 /*   By: lbento <lbento@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 23:28:15 by lbento            #+#    #+#             */
-/*   Updated: 2025/10/16 01:39:45 by lbento           ###   ########.fr       */
+/*   Updated: 2025/10/16 05:44:34 by lbento           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,11 @@ static t_stack	*creation_list(int argc, char **argv)
 		nodes = (t_stack *)malloc(sizeof(t_stack));
 		if (!nodes)
 			free_and_exit(first_node, NULL, 1);
-		nodes->number = check_num(first_node, argv[i]);
+		nodes->number = 0;
 		nodes->position = -1;
 		nodes->previous = temp;
 		temp->next = nodes;
+		nodes->number = check_num(first_node, argv[i]);
 		temp = nodes;
 		i++;
 	}
@@ -81,31 +82,31 @@ static t_stack	*init_first_node(char *argv)
 
 static int	check_num(t_stack *stack_a, char *argv)
 {
-	long	total;
+	long	num;
 	int		i;
 	int		sign;
 
 	i = 0;
 	sign = 1;
-	total = 0;
+	num = 0;
 	if (argv[i] == '-' || argv[i] == '+')
 	{
 		if (argv[i] == '-')
 			sign = -1;
 		i++;
 	}
-	if (argv[i] == '\0')
+	if (!(argv[i] >= '0' && argv[i] <= '9'))
 		free_and_exit(stack_a, NULL, 1);
-	while (argv[i] >= '0' && argv[i] <= '9')
+	while (argv[i])
 	{
-		total = (argv[i] - '0') + (total * 10);
-		if ((total > 2147483647) || (total > 2147483648 && sign == -1))
+		if ((argv[i] < '0' || argv[i] > '9'))
+			free_and_exit(stack_a, NULL, 1);
+		num = (argv[i] - '0') + (num * 10);
+		if ((num > 2147483647 && sign == 1) || (num > 2147483648 && sign == -1))
 			free_and_exit(stack_a, NULL, 1);
 		i++;
 	}
-	if (argv[i] != '\0')
-		free_and_exit(stack_a, NULL, 1);
-	return ((int)total * sign);
+	return ((int)num * sign);
 }
 
 static int	verify_result(t_stack *stack_a, t_stack *stack_b)
