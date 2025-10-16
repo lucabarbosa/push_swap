@@ -6,7 +6,7 @@
 /*   By: lbento <lbento@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 10:51:16 by lbento            #+#    #+#             */
-/*   Updated: 2025/10/15 00:26:57 by lbento           ###   ########.fr       */
+/*   Updated: 2025/10/16 01:32:43 by lbento           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,12 @@ char	*read_line(int fd, char *remaining, char *buffer)
 			return (remaining);
 		buffer[bytes_read] = '\0';
 		if (!remaining)
-			remaining = ft_strdup("");
+			remaining = ft_strdup_gnl("");
 		temp = remaining;
-		remaining = ft_strjoin(temp, buffer);
+		remaining = ft_strjoin_gnl(temp, buffer);
 		free(temp);
 		temp = NULL;
-		if (ft_strchr(buffer, '\n'))
+		if (ft_strchr_gnl(buffer, '\n'))
 			return (remaining);
 	}
 	return (remaining);
@@ -86,8 +86,8 @@ char	*save_file(char *line)
 	{
 		return (NULL);
 	}
-	size_line = (ft_strlen(line) - i);
-	rest = ft_substr(line, i + 1, size_line);
+	size_line = (ft_strlen_gnl(line) - i);
+	rest = ft_substr_gnl(line, i + 1, size_line);
 	if (*rest == '\0')
 	{
 		free(rest);

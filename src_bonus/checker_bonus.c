@@ -6,7 +6,7 @@
 /*   By: lbento <lbento@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 23:28:15 by lbento            #+#    #+#             */
-/*   Updated: 2025/10/15 01:17:58 by lbento           ###   ########.fr       */
+/*   Updated: 2025/10/16 01:39:45 by lbento           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static t_stack	*creation_list(int argc, char **argv);
 static t_stack	*init_first_node(char *argv);
-static int	check_num(t_stack *stack_a, char *argv);
-static int	verify_result(t_stack *stack_a, t_stack *stack_b);
+static int		check_num(t_stack *stack_a, char *argv);
+static int		verify_result(t_stack *stack_a, t_stack *stack_b);
 
 int	main(int argc, char **argv)
 {
@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 	{
 		bonus_a = creation_list(argc, argv);
 		bonus_b = NULL;
-		check_bonus_arguments(&bonus_a);
+		check_arguments(&bonus_a);
 		read_execute(&bonus_a, &bonus_b);
 		result = verify_result (bonus_a, bonus_b);
 		if (result)
@@ -61,6 +61,7 @@ static t_stack	*creation_list(int argc, char **argv)
 		temp = nodes;
 		i++;
 	}
+	temp->next = NULL;
 	return (first_node);
 }
 
