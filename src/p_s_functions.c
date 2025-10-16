@@ -6,7 +6,7 @@
 /*   By: lbento <lbento@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 14:53:19 by lbento            #+#    #+#             */
-/*   Updated: 2025/10/15 00:57:16 by lbento           ###   ########.fr       */
+/*   Updated: 2025/10/15 20:48:05 by lbento           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ void	push_a(t_stack **stack_a, t_stack **stack_b, int put_text)
 	if (second_b != NULL)
 		second_b->previous = NULL;
 	old_first_a = *stack_a;
-	listadd_front(stack_a, first_b);
+	first_b->next = *stack_a;
+	*stack_a = first_b;
 	if (old_first_a != NULL)
 		old_first_a->previous = first_b;
 	if (put_text)
@@ -104,7 +105,8 @@ void	push_b(t_stack **stack_a, t_stack **stack_b, int put_text)
 	if (second_a != NULL)
 		second_a->previous = NULL;
 	old_first_b = *stack_b;
-	listadd_front(stack_b, first_a);
+	first_a->next = *stack_b;
+	*stack_b = first_a;
 	if (old_first_b != NULL)
 		old_first_b->previous = first_a;
 	if (put_text)

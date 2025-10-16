@@ -6,7 +6,7 @@
 /*   By: lbento <lbento@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 12:22:50 by lbento            #+#    #+#             */
-/*   Updated: 2025/10/15 00:59:37 by lbento           ###   ########.fr       */
+/*   Updated: 2025/10/15 19:37:16 by lbento           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,7 @@ static void	sort_small(t_stack **stack_a, t_stack **stack_b, int size)
 {
 	if (size == 4)
 	{
-		while ((*stack_a)->position != 0)
-			rotate_a (stack_a, 1);
+		move_to_b(stack_a, size, 0);
 		push_b(stack_a, stack_b, 1);
 		sort_three(stack_a);
 		push_a(stack_a, stack_b, 1);

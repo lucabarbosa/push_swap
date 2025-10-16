@@ -6,7 +6,7 @@
 /*   By: lbento <lbento@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 22:02:31 by lbento            #+#    #+#             */
-/*   Updated: 2025/10/15 00:57:42 by lbento           ###   ########.fr       */
+/*   Updated: 2025/10/15 20:45:50 by lbento           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	swap_a(t_stack **stack_a, int put_text);
 void	swap_b(t_stack **stack_b, int put_text);
 void	rotate_a(t_stack **stack_a, int put_text);
 void	rotate_b(t_stack **stack_b, int put_text);
-void	listadd_front(t_stack **stack, t_stack *new);
 void	include_position(t_stack **stack_a, int size);
 void	sort_100(t_stack **stack_a, t_stack **stack_b);
 void	sort_500(t_stack **stack_a, t_stack **stack_b);

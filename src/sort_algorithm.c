@@ -6,15 +6,15 @@
 /*   By: lbento <lbento@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 22:40:57 by lbento            #+#    #+#             */
-/*   Updated: 2025/10/15 00:58:36 by lbento           ###   ########.fr       */
+/*   Updated: 2025/10/15 19:42:07 by lbento           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_100(t_stack **stack_a, t_stack **stack_b);
-void	sort_500(t_stack **stack_a, t_stack **stack_b);
-static void	push_back_sorted(t_stack **stack_a, t_stack **stack_b);
+void			sort_100(t_stack **stack_a, t_stack **stack_b);
+void			sort_500(t_stack **stack_a, t_stack **stack_b);
+static void		push_back_sorted(t_stack **stack_a, t_stack **stack_b);
 static int		find_max_position(t_stack *stack_b);
 static int		calculate_position_index(t_stack *stack, int position);
 
@@ -75,7 +75,7 @@ static void	push_back_sorted(t_stack **stack_a, t_stack **stack_b)
 	int	max_pos;
 	int	pos_index;
 	int	size_b;
-	
+
 	while (*stack_b != NULL)
 	{
 		max_pos = find_max_position(*stack_b);
@@ -99,20 +99,17 @@ static int	find_max_position(t_stack *stack_b)
 {
 	int		max;
 	t_stack	*current;
-	
+
 	if (!stack_b)
 		return (-1);
-	
 	max = stack_b->position;
 	current = stack_b->next;
-	
 	while (current != NULL)
 	{
 		if (current->position > max)
 			max = current->position;
 		current = current->next;
 	}
-	
 	return (max);
 }
 
@@ -120,10 +117,9 @@ static int	calculate_position_index(t_stack *stack, int position)
 {
 	int		index;
 	t_stack	*current;
-	
+
 	index = 0;
 	current = stack;
-	
 	while (current != NULL)
 	{
 		if (current->position == position)
@@ -131,6 +127,5 @@ static int	calculate_position_index(t_stack *stack, int position)
 		index++;
 		current = current->next;
 	}
-	
 	return (0);
 }
