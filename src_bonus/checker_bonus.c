@@ -6,7 +6,7 @@
 /*   By: lbento <lbento@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 23:28:15 by lbento            #+#    #+#             */
-/*   Updated: 2025/10/16 21:50:29 by lbento           ###   ########.fr       */
+/*   Updated: 2025/10/20 17:24:31 by lbento           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 	{
 		bonus_a = creation_list(argc, argv);
 		bonus_b = NULL;
-		check_arguments(&bonus_a);
+		check_bonus_arguments(&bonus_a);
 		read_execute(&bonus_a, &bonus_b);
 		result = verify_result (bonus_a, bonus_b);
 		if (result)

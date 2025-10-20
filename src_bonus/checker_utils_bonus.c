@@ -6,17 +6,36 @@
 /*   By: lbento <lbento@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 23:28:33 by lbento            #+#    #+#             */
-/*   Updated: 2025/10/16 21:50:34 by lbento           ###   ########.fr       */
+/*   Updated: 2025/10/20 17:57:48 by lbento           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker_bonus.h"
 
-void			read_execute(t_stack **stack_a, t_stack **stack_b);
-int				exe_operation(t_stack **stack_a, t_stack **stack_b, char *line);
-static void		silent_ss(t_stack **stack_a, t_stack **stack_b);
-static void		silent_rr_rrr(t_stack **stack_a, t_stack **stack_b, int each);
-void			free_and_exit(t_stack *stack_a, t_stack *stack_b, int exit_num);
+void		check_bonus_arguments(t_stack **stack_a);
+void		read_execute(t_stack **stack_a, t_stack **stack_b);
+void		free_and_exit(t_stack *stack_a, t_stack *stack_b, int exit_num);
+void		silent_ss_rr_rrr(t_stack **stack_a, t_stack **stack_b, int each);
+int			exe_operation(t_stack **stack_a, t_stack **stack_b, char *line);
+
+void	check_bonus_arguments(t_stack **stack_a)
+{
+	t_stack	*temp;
+	t_stack	*next_node;
+
+	temp = *stack_a;
+	while (temp)
+	{
+		next_node = temp->next;
+		while (next_node)
+		{
+			if (temp->number == next_node->number)
+				free_and_exit(*stack_a, NULL, 1);
+			next_node = next_node->next;
+		}
+		temp = temp->next;
+	}
+}
 
 void	read_execute(t_stack **stack_a, t_stack **stack_b)
 {
@@ -44,7 +63,7 @@ int	exe_operation(t_stack **stack_a, t_stack **stack_b, char *line)
 	else if (ft_strncmp(line, "sb\n", 3) == 0)
 		return (swap_b(stack_b, 0), 0);
 	else if (ft_strncmp(line, "ss\n", 3) == 0)
-		return (silent_ss(stack_a, stack_b), 0);
+		return (silent_ss_rr_rrr(stack_a, stack_b, 0), 0);
 	else if (ft_strncmp(line, "pa\n", 3) == 0)
 		return (push_a(stack_a, stack_b, 0), 0);
 	else if (ft_strncmp(line, "pb\n", 3) == 0)
@@ -54,25 +73,24 @@ int	exe_operation(t_stack **stack_a, t_stack **stack_b, char *line)
 	else if (ft_strncmp(line, "rb\n", 3) == 0)
 		return (rotate_b(stack_b, 0), 0);
 	else if (ft_strncmp(line, "rr\n", 3) == 0)
-		return (silent_rr_rrr(stack_a, stack_b, 1), 0);
+		return (silent_ss_rr_rrr(stack_a, stack_b, 1), 0);
 	else if (ft_strncmp(line, "rra\n", 4) == 0)
 		return (reverse_rotate_a(stack_a, 0), 0);
 	else if (ft_strncmp(line, "rrb\n", 4) == 0)
 		return (reverse_rotate_b(stack_b, 0), 0);
 	else if (ft_strncmp(line, "rrr\n", 4) == 0)
-		return (silent_rr_rrr(stack_a, stack_b, 2), 0);
+		return (silent_ss_rr_rrr(stack_a, stack_b, 2), 0);
 	else
 		return (1);
 }
 
-static void	silent_ss(t_stack **stack_a, t_stack **stack_b)
+void	silent_ss_rr_rrr(t_stack **stack_a, t_stack **stack_b, int each)
 {
-	swap_a(stack_a, 0);
-	swap_b(stack_b, 0);
-}
-
-static void	silent_rr_rrr(t_stack **stack_a, t_stack **stack_b, int each)
-{
+	if (each == 0)
+	{
+		swap_a(stack_a, 0);
+		swap_b(stack_b, 0);
+	}
 	if (each == 1)
 	{
 		rotate_a(stack_a, 0);

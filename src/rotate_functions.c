@@ -6,7 +6,7 @@
 /*   By: lbento <lbento@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:17:16 by lbento            #+#    #+#             */
-/*   Updated: 2025/10/16 05:41:03 by lbento           ###   ########.fr       */
+/*   Updated: 2025/10/20 18:08:49 by lbento           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	rotate_a(t_stack **stack_a, int put_text)
 	t_stack	*old_first_node;
 	t_stack	*old_last_node;
 
-	if (!stack_a || !(*stack_a)->next)
+	if (!stack_a || !*stack_a || !(*stack_a)->next)
 		return ;
 	old_first_node = *stack_a;
 	*stack_a = old_first_node->next;
@@ -41,7 +41,7 @@ void	rotate_b(t_stack **stack_b, int put_text)
 	t_stack	*old_first_node;
 	t_stack	*old_last_node;
 
-	if (!stack_b || !(*stack_b)->next)
+	if (!stack_b || !*stack_b || !(*stack_b)->next)
 		return ;
 	old_first_node = *stack_b;
 	*stack_b = old_first_node->next;
@@ -60,7 +60,7 @@ void	reverse_rotate_a(t_stack **stack_a, int put_text)
 	t_stack	*old_last_node;
 	t_stack	*penultimate;
 
-	if (!stack_a || !(*stack_a)->next)
+	if (!stack_a || !*stack_a || !(*stack_a)->next)
 		return ;
 	old_first_node = *stack_a;
 	old_last_node = list_last(*stack_a);
@@ -80,7 +80,7 @@ void	reverse_rotate_b(t_stack **stack_b, int put_text)
 	t_stack	*old_last_node;
 	t_stack	*penultimate;
 
-	if (!stack_b || !(*stack_b)->next)
+	if (!stack_b || !*stack_b || !(*stack_b)->next)
 		return ;
 	old_first_node = *stack_b;
 	old_last_node = list_last(*stack_b);
