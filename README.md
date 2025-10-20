@@ -61,9 +61,6 @@ The algorithm divides the numbers into "chunks" and moves them strategically:
 - Chunk size: 35
 - Same logic, but with larger groups to optimize balance movements
 
-#### Check the Excalidraw for a better example of the execution.
-- [push_swap.excalidraw](https://excalidraw.com/#json=dAtp7vWXHduESoJWQBiss,glay8xOMjIhOPwaF1v2pJw)
-
 ```
 Simple example of the process::
 Stack A: [10, 8, 7, 1, 9, 5, 4, 3, 2, 6] → Position: [9, 7, 6, 0, 8, 4, 3, 2, 1, 5]
@@ -73,6 +70,20 @@ Chunk 0–14: Move numbers with position < 15
 ├─ If position < i+chunk_size: pb (just push)
 └─ If position >= i+chunk_size: ra (rotate A)
 ```
+#### Check the Excalidraw for a better example of the execution.
+Use *Ctrl + mouse scroll* to zoom in or out.  
+Use *Shift + mouse scroll* to scroll horizontally.  
+Use the *mouse scroll* to move vertically.
+- [push_swap.excalidraw](https://excalidraw.com/#json=XTJyHY-ugIiZ4VKKWr9I0,_iVW8X96PbuVv7RgKZ891Q)
+
+##### ***For more than 500 numbers:***
+If you want to code this algorithm with more than 500 numbers and want to find the most efficient chunk size, use this formula to calculate the approximate value:
+- c = chunk size
+- n = number
+***c = √(2 x n)***
+
+This will return an approximate number. You should manually adjust it by adding or subtracting 1 integer from the total, depending on what gives the best and most stable results.
+
 ---
 #### 3. **Optimized Reconstruction (push_back_sorted)**
 
